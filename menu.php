@@ -1,4 +1,4 @@
-<?php require 'connectdb.php'; ?>
+<?php require 'classes.php'; ?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -33,23 +33,7 @@ and open the template in the editor.
 
     <content>
         <?php
-        selectsql();
-
-        function selectsql() {
-            $con = connectionDB();
-            if ($con->connect_error) {
-                die("Connection failed: " . $con->connect_error);
-            } else {
-                $sql = "SELECT `name` FROM `category` ORDER by `priority`";
-                $result = $con->query($sql);
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<fieldset> <legend> " . $row['name'] . "</legend></fieldset>";
-                    }
-                }
-                $con->close();
-            }
-        }
+        category::displaycategories();
         ?>
     </content>
 

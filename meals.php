@@ -1,4 +1,4 @@
-<?php require 'connectdb.php'; ?>
+<?php require 'classes.php'; ?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -24,7 +24,6 @@ and open the template in the editor.
             <a href="index.php" class="active">Home</a>
             <a href="menu.php">Menu</a>
             <a href="meals.php">Meals</a>
-            <a href="#products">Porducts</a>
             <a href="#mycart">My Cart</a>
             <a href="#myorders">My Orders</a>
             <a href="#myprofile">My Profile</a>
@@ -33,7 +32,10 @@ and open the template in the editor.
         </nav>
 
     <content>
-        <?php getmeals(); ?>
+        <?php
+       
+        meal::getmeals();
+        ?>
     </content>
 
     <footer><h3> All Rights Reserved To Khaldoon Al Krad &reg; <?php echo date('Y') ?> </h3> </footer>

@@ -1,9 +1,11 @@
 <?php require 'connectdb.php'; ?>
+
 <?php
 
-// Account Class  ////////////////////////////////////////////////////////////////////////////////////////////
+// Account Class  /////////////////////////////////////////////////////////////////////////////////////////////////
 class account {
 
+    public $id;
     public $firstname;
     public $lastname;
     public $address;
@@ -20,6 +22,15 @@ class account {
         $this->email = $email;
         $this->username = $username;
         $this->password = $password;
+    }
+
+    public function getid() {
+        return $this->id;
+    }
+
+    public function setid($id) {
+
+        $this->id = $id;
     }
 
     public function getfirstname() {
@@ -111,7 +122,7 @@ class account {
         }
     }
 
-    function checkifaccountexist() {
+    public function checkifaccountexist() {
 
         $con = connectionDB();
         if ($con->connect_error) {
@@ -202,12 +213,9 @@ class account {
 
             if ($this->username != "" && $this->password != "") {
                 return $this->signin();
-            } 
+            }
         }
     }
-    
-    
-    
 
 }
 
@@ -221,18 +229,75 @@ class meal {
     public $imagename;
     public $categoryid;
 
+    public function __construct($name, $price, $description, $imagename, $categoryid) {
+        $this->name = $name;
+        $this->price = $price;
+        $this->description = $description;
+        $this->imagename = $imagename;
+        $this->categoryid = $categoryid;
+    }
+
     public function getid() {
         return $this->id;
     }
 
-    function getmeals() {
+    public function setid($id) {
+
+        $this->id = $id;
+    }
+
+    public function getname() {
+        return $this->name;
+    }
+
+    public function setname($name) {
+
+        $this->name = $name;
+    }
+
+    public function getprice() {
+        return $this->price;
+    }
+
+    public function setprice($price) {
+
+        $this->price = $price;
+    }
+
+    public function getdescription() {
+        return $this->description;
+    }
+
+    public function setdescription($description) {
+
+        $this->description = $description;
+    }
+
+    public function getimagename() {
+        return $this->imagename;
+    }
+
+    public function setimagename($imagename) {
+
+        $this->imagename = $imagename;
+    }
+
+    public function getcategoryid() {
+        return $this->categoryid;
+    }
+
+    public function setcategoryid($categoryid) {
+
+        $this->categoryid = $categoryid;
+    }
+
+    static function getmeals() {
         $con = connectionDB();
         if ($con->connect_error) {
             die("Connection failed: " . $con->connect_error);
         } else {
             $sql = "SELECT `id`, `name`, `price`, `description`, `imagename`, `categoryid`  FROM `meal`";
             $result = $con->query($sql);
-
             if ($result->num_rows > 0) {
                 echo "<table>";
                 while ($row = $result->fetch_assoc()) {
@@ -246,6 +311,63 @@ class meal {
                     echo "<tr>";
                 }
                 echo "</table>";
+            }
+            $con->close();
+        }
+    }
+
+}
+
+
+//Category Class///////////////////////////////////////////////////////////////////////////////////////////////////
+class category {
+
+    public $id;
+    public $name;
+    public $priority;
+
+    public function __construct($name, $priority) {
+        $this->name = $name;
+        $this->priority = $priority;
+    }
+
+    public function getid() {
+        return $this->id;
+    }
+
+    public function setid($id) {
+
+        $this->id = $id;
+    }
+
+    public function getname() {
+        return $this->name;
+    }
+
+    public function setname($name) {
+
+        $this->name = $name;
+    }
+
+    public function getpriority() {
+        return $this->priority;
+    }
+
+    public function setpriority($priority) {
+        $this->priority = $priority;
+    }
+
+    static function displaycategories() {
+        $con = connectionDB();
+        if ($con->connect_error) {
+            die("Connection failed: " . $con->connect_error);
+        } else {
+            $sql = "SELECT `name` FROM `category` ORDER by `priority`";
+            $result = $con->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<fieldset> <legend> " . $row['name'] . "</legend></fieldset>";
+                }
             }
             $con->close();
         }
