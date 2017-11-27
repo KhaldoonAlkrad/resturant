@@ -31,38 +31,9 @@ and open the template in the editor.
             <a href="signup.php">Register</a>
             <a href="signin.php">Sign in</a>
         </nav>
-        
-        <content>
-        <?php
-        selectsql();
 
-        function selectsql() {
-            $con = connectionDB();
-            if ($con->connect_error) {
-                die("Connection failed: " . $con->connect_error);
-            } else {
-                $sql = "SELECT `id`, `name`, `price`, `type`, `description`, `imagename`, `categoryid`  FROM `meal`";
-                $result = $con->query($sql);
-                
-                if ($result->num_rows > 0) {
-                    echo "<table>";
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td class='meals' rowspan=2> "."<img src=images/".$row['imagename']."></td>";
-                        echo "<td class='meals mealname'colspan=2>" . $row['name'] . "</td>";
-                        echo "</tr>";
-                        echo "<tr>";
-                        echo "<td class='meals'> " . $row['description'] . "</td>";
-                        echo "<td class='meals'> &euro;" . $row['price'] . "</td>";
-                        echo "<tr>";
-                        
-                    }
-                    echo "</table>";
-                }
-                $con->close();
-            }
-        }
-        ?>
+    <content>
+        <?php getmeals(); ?>
     </content>
 
     <footer><h3> All Rights Reserved To Khaldoon Al Krad &reg; <?php echo date('Y') ?> </h3> </footer>

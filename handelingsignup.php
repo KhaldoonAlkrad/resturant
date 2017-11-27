@@ -1,41 +1,9 @@
 <?php require 'connectdb.php'; ?>
 <?php
 
-$msgErr = $usernameErr = $passwordErr = $firstnameErr = $lastnameErr = $emailErr = $addressErr = $housenumberErr = $address = $housenumber = $firstname = $lastname = $username = $password = $email = $msgSuc = "";
-
-
-
-function insertsql($firstname, $lastname, $address, $housenumber, $email, $username, $password) {
-    $con = connectionDB();
-    if ($con->connect_error) {
-        die("Connection failed: " . $con->connect_error);
-    } else {
-        $sql = "INSERT INTO `account`(`role`, `firstname`, `lastname`, `address`, `housenumber`, `email`, `username`, `password`) VALUES ('customer','$firstname','$lastname','$address','$housenumber','$email','$username','$password')";
-        echo $sql;
-        $result = $con->query($sql);
-        if (isset($result)) {
-            global $msgSuc;
-            $msgSuc = "Your Account Has Been Created Successfully!";
-        }
-    }
-    $con->close();
-}
-
-function checkifexist($username, $email) {
-
-    $con = connectionDB();
-    if ($con->connect_error) {
-        die("Connection failed: " . $con->connect_error);
-    } else {
-        $sql = "SELECT `username`, `email` FROM `account` WHERE `username`= '$username' OR `email`= '$email'";
-        $result = $con->query($sql);
-        if ($result->num_rows >= 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
+$msgErr = $msgSuc = "";
+$usernameErr = $passwordErr = $firstnameErr = $lastnameErr = $emailErr = $addressErr = $housenumberErr = "";
+$address = $housenumber = $firstname = $lastname = $username = $password = $email = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["firstname"])) {
@@ -82,10 +50,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($username != "" && $password != "" && $firstname != "" && $lastname != "" && $email != "" && $address != "" && $housenumber != "") {
-        $ex = checkifexist($username, $email);
+        $ex = checkifaccountexist($username, $email);
         if ($ex == false) {
-            
-            insertsql($firstname, $lastname,$address, $housenumber, $email, $username, $password);
+
+            addaccount($firstname, $lastname, $address, $housenumber, $email, $username, $password);
         } else {
             $msgErr = "the username or the email that you have enterd is al ready exist! Please choose another one";
         }
