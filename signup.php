@@ -1,4 +1,5 @@
-<?php require 'handelingsignup.php'; ?>
+<?php require 'classes.php'; ?>
+
 <!doctype html>
 
 <html lang="en">
@@ -22,7 +23,6 @@
             <a href="index.php" class="active">Home</a>
             <a href="menu.php">Menu</a>
             <a href="meals.php">Meals</a>
-            <a href="#products">Porducts</a>
             <a href="#mycart">My Cart</a>
             <a href="#myorders">My Orders</a>
             <a href="#myprofile">My Profile</a>
@@ -37,25 +37,20 @@
                 <fieldset>
                     <legend>Sign Up </legend> 
                     <input type="text" name="firstname" placeholder="First Name" value="" >
-                    <span class="error"><?php echo $firstnameErr; ?></span>
                     <input type="text" name="lastname" placeholder="Last Name" value="" >
-                    <span class="error"><?php echo $lastnameErr; ?></span>
-                     <input type="text" name="address" placeholder="Address" value="" >
-                    <span class="error"><?php echo $addressErr; ?></span>
-                     <input type="text" name="housenumber" placeholder="House Number" value="" >
-                    <span class="error"><?php echo $housenumberErr; ?></span>
-
+                    <input type="text" name="address" placeholder="Address" value="" >
+                    <input type="text" name="housenumber" placeholder="House Number" value="" >
                 </fieldset>
                 <fieldset>
                     <input type="text" name="email" placeholder="Email" value="" > 
-                    <span class="error"><?php echo $emailErr; ?></span>
                     <input type="text" name="username" placeholder="Username" value="" >
-                    <span class="error"><?php echo $usernameErr; ?></span>
                     <input type="password" name="password" placeholder="Password" value="" > 
-                    <span class="error"><?php echo $passwordErr; ?></span>
-                    <span class="error"><?php echo $msgErr; ?></span> 
-                    <span class="success"><?php echo $msgSuc; ?></span> 
-                </fieldset>     
+                    <?php
+                    $account = new account("", "", "", 0, "", "", "");
+                    $msg = $account->checkaccountinput();
+                    ?>
+                    <span class="error"><?php echo $msg; ?></span> 
+                </fieldset>    
                 <input type="submit" name="register" value="Register">  
 
             </form>
