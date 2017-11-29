@@ -23,7 +23,7 @@
             <a href="index.php" class="active">Home</a>
             <a href="menu.php">Menu</a>
             <a href="meals.php">Meals</a>
-            <a href="#mycart">My Cart</a>
+            <a href="mycart.php">My Cart</a>
             <a href="#myorders">My Orders</a>
             <a href="#myprofile">My Profile</a>
             <a href="signup.php">Register</a>

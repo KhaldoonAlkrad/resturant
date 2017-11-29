@@ -15,6 +15,7 @@ and open the template in the editor.
         <title>PHP Resturant</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
         <link rel="stylesheet" type="text/css" href="mystyle.css" />
+        <script src="myscript.js"></script>
 
 
     </head>
@@ -24,7 +25,7 @@ and open the template in the editor.
             <a href="index.php" class="active">Home</a>
             <a href="menu.php">Menu</a>
             <a href="meals.php">Meals</a>
-            <a href="#mycart">My Cart</a>
+            <a href="mycart.php">My Cart</a>
             <a href="#myorders">My Orders</a>
             <a href="#myprofile">My Profile</a>
             <a href="signup.php">Register</a>
@@ -33,8 +34,8 @@ and open the template in the editor.
 
     <content>
         <?php
-       
-        meal::getmeals();
+        session_start();
+        meal::getmeals(1);
         ?>
     </content>
 

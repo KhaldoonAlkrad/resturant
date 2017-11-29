@@ -291,23 +291,25 @@ class meal {
         $this->categoryid = $categoryid;
     }
 
-    static function getmeals() {
+    static function getmeals($categoryid) {
         $con = connectionDB();
         if ($con->connect_error) {
             die("Connection failed: " . $con->connect_error);
         } else {
-            $sql = "SELECT `id`, `name`, `price`, `description`, `imagename`, `categoryid`  FROM `meal`";
+            $sql = "SELECT * FROM `meal` WHERE categoryid=$categoryid";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 echo "<table>";
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td class='meals' rowspan=2> " . "<img src=images/" . $row['imagename'] . "></td>";
-                    echo "<td class='meals mealname'colspan=2>" . $row['name'] . "</td>";
+                    echo "<td class='meals mealname'colspan=4>" . $row['name'] . "</td>";
                     echo "</tr>";
                     echo "<tr>";
                     echo "<td class='meals'> " . $row['description'] . "</td>";
                     echo "<td class='meals'> &euro;" . $row['price'] . "</td>";
+                    echo "<td><input value=1 type=number name=quantity min=0 max=100></td>";
+                    echo "<td><button class=addbutton fa fa-cart-plus onclick=additemtocart()>+</button></td>";
                     echo "<tr>";
                 }
                 echo "</table>";
@@ -317,7 +319,6 @@ class meal {
     }
 
 }
-
 
 //Category Class///////////////////////////////////////////////////////////////////////////////////////////////////
 class category {
@@ -362,12 +363,130 @@ class category {
         if ($con->connect_error) {
             die("Connection failed: " . $con->connect_error);
         } else {
-            $sql = "SELECT `name` FROM `category` ORDER by `priority`";
+            $sql = "SELECT * FROM `category` ORDER by `priority`";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "<fieldset> <legend> " . $row['name'] . "</legend></fieldset>";
+                    echo "<details open><summary>" . $row['name'] . "</summary>";
+                    if ($row['id'] == 3) {
+                        product::getproducts($row['id']);
+                    } else {
+                        meal::getmeals($row['id']);
+                    }
+                    echo '</details>';
                 }
+            }
+            $con->close();
+        }
+    }
+
+}
+
+//Product Class //////////////////////////////////////////////////////////////////////////////////////////////////
+class product {
+
+    public $id;
+    public $name;
+    public $type;
+    public $price;
+    public $description;
+    public $imagename;
+    public $categoryid;
+
+    public function __construct($name, $type, $price, $description, $imagename, $categoryid) {
+        $this->name = $name;
+        $this->type = $type;
+        $this->price = $price;
+        $this->description = $description;
+        $this->imagename = $imagename;
+        $this->categoryid = $categoryid;
+    }
+
+    public function getid() {
+        return $this->id;
+    }
+
+    public function setid($id) {
+
+        $this->id = $id;
+    }
+
+    public function getname() {
+        return $this->name;
+    }
+
+    public function setname($name) {
+
+        $this->name = $name;
+    }
+
+    public function gettype() {
+        return $this->type;
+    }
+
+    public function settype($type) {
+
+        $this->type = $type;
+    }
+
+    public function getprice() {
+        return $this->price;
+    }
+
+    public function setprice($price) {
+
+        $this->price = $price;
+    }
+
+    public function getdescription() {
+        return $this->description;
+    }
+
+    public function setdescription($description) {
+
+        $this->description = $description;
+    }
+
+    public function getimagename() {
+        return $this->imagename;
+    }
+
+    public function setimagename($imagename) {
+
+        $this->imagename = $imagename;
+    }
+
+    public function getcategoryid() {
+        return $this->categoryid;
+    }
+
+    public function setcategoryid($categoryid) {
+
+        $this->categoryid = $categoryid;
+    }
+
+    static function getproducts($categoryid) {
+        $con = connectionDB();
+        if ($con->connect_error) {
+            die("Connection failed: " . $con->connect_error);
+        } else {
+            $sql = "SELECT * FROM `product` WHERE categoryid=$categoryid";
+            $result = $con->query($sql);
+            if ($result->num_rows > 0) {
+                echo "<table>";
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td class='meals' rowspan=2> " . "<img src=images/" . $row['imagename'] . "></td>";
+                    echo "<td class='meals mealname'colspan=4>" . $row['name'] . "</td>";
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td class='meals'> " . $row['description'] . "</td>";
+                    echo "<td class='meals'> &euro;" . $row['price'] . "</td>";
+                    echo "<td><input value=1 type=number name=quantity min=0 max=100></td>";
+                    echo "<td><button class=addbutton fa fa-cart-plus onclick=additemtocart()>+</button></td>";
+                    echo "<tr>";
+                }
+                echo "</table>";
             }
             $con->close();
         }
