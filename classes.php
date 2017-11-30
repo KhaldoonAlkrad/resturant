@@ -109,14 +109,18 @@ class account {
         if ($con->connect_error) {
             die("Connection failed: " . $con->connect_error);
         } else {
-            $sql = "SELECT `id`, `username`, `password` FROM `account` WHERE `username`= BINARY '$this->username' AND `password`= BINARY '$this->password'";
+            $sql = "SELECT * FROM `account` WHERE `username`= BINARY '$this->username' AND `password`= BINARY '$this->password'";
             $result = $con->query($sql);
             if (isset($result)) {
                 if ($result->num_rows <= 0) {
                     return "username or password does not match";
                 } else {
+                    session_start();
+                    $row = $result->fetch_assoc();
+                    $_SESSION["firstname"]= $row['firstname'];
+                    $_SESSION["lastname"]= $row['lastname'];
                     $con->close();
-                    header('Location:index.php');
+                    header("location: newindex.php");
                 }
             }
         }

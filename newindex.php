@@ -1,4 +1,5 @@
 <?php require 'classes.php'; ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -69,16 +70,14 @@
             <a id="amenu" class="active">Menu</a>
             <a id="ameals" class="active">Meals</a>
             <a id="aproducts">Products</a>
-            <a id="asignin" href="signin.php" style="float: right;">Sign in</a>
-            <a id="asignup"  class="material-icons" style="float: right; font-size: 18px;" >&#xe7fe;</a>
-            <div id="auserlist" class="dropdown" style="float: right; display: none">
-                <button class="dropbtn fa">&#xf007; 
+            <div id="auserlist" class="dropdown" style="float: right; display: inline">
+                <button class="dropbtn fa">&#xf007; <?php echo $_SESSION["firstname"]." ".$_SESSION["lastname"];?> 
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
                     <a id="amyorders" >My Orders</a>
                     <a id="amyprofile" >My Profile</a>
-                    <a id="asignout" >Sign out</a>
+                    <a id="asignout" href="signout.php" >Sign out</a>
                 </div>
             </div> 
             <a id="amycart"  class="fa" style="float: right;">&#xf07a;</a>

@@ -1,10 +1,5 @@
 <?php require 'classes.php'; ?>
-
 <?php
-
 session_start();
-category::displaycategories();
-?>
-
-
-
+session_destroy();
+header("location: index.php");
