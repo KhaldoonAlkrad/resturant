@@ -45,19 +45,17 @@
                     $("#content").load("mycart.php");
                 });
             });
-
-               
-
             $(document).ready(function () {
-                $("#formsignin").submit(function () {
-                    $("#content").load("menu.php");
+                $("#amyorders").click(function () {
+                    $("#content").load("myorders.php");
                 });
             });
             $(document).ready(function () {
-                $("#formsignin").submit(function () {
-                    
+                $("#amyprofile").click(function () {
+                    $("#content").load("myprofile.php");
                 });
             });
+
         </script>
 
 
@@ -71,7 +69,7 @@
             <a id="ameals" class="active">Meals</a>
             <a id="aproducts">Products</a>
             <div id="auserlist" class="dropdown" style="float: right; display: inline">
-                <button class="dropbtn fa">&#xf007; <?php echo $_SESSION["firstname"]." ".$_SESSION["lastname"];?> 
+                <button class="dropbtn fa" >&#xf007; <?php echo $_SESSION["firstname"] . " " . $_SESSION["lastname"]; ?> 
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">

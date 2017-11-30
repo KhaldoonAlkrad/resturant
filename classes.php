@@ -98,7 +98,11 @@ class account {
             $sql = "INSERT INTO `account`(`role`, `firstname`, `lastname`, `address`, `housenumber`, `email`, `username`, `password`) VALUES";
             $sql .= " ('customer','$this->firstname','$this->lastname','$this->address',$this->housenumber,'$this->email','$this->username','$this->password')";
             $result = $con->query($sql);
-            return "Your Account Has Been Created Successfully!";
+            session_start();
+            $_SESSION["firstname"] = $this->firstname;
+            $_SESSION["lastname"] = $this->lastname;
+            $con->close();
+            header("location: newindex.php");
         }
         $con->close();
     }
@@ -117,8 +121,8 @@ class account {
                 } else {
                     session_start();
                     $row = $result->fetch_assoc();
-                    $_SESSION["firstname"]= $row['firstname'];
-                    $_SESSION["lastname"]= $row['lastname'];
+                    $_SESSION["firstname"] = $row['firstname'];
+                    $_SESSION["lastname"] = $row['lastname'];
                     $con->close();
                     header("location: newindex.php");
                 }

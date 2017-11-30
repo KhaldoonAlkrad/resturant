@@ -69,8 +69,9 @@
             <a id="amenu" class="active">Menu</a>
             <a id="ameals" class="active">Meals</a>
             <a id="aproducts">Products</a>
+            
             <a id="asignin" href="signin.php" style="float: right;">Sign in</a>
-            <a id="asignup"  class="material-icons" style="float: right; font-size: 18px;" >&#xe7fe;</a>
+            <a id="asignup" href="signup.php" class="material-icons" style="float: right; font-size: 18px;" >&#xe7fe;</a>
             <div id="auserlist" class="dropdown" style="float: right; display: none">
                 <button class="dropbtn fa">&#xf007; 
                     <i class="fa fa-caret-down"></i>
