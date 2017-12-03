@@ -30,7 +30,10 @@ form{
     margin-right: auto;
 }
 
-
+#cartform{
+   
+   margin-top: 0px;
+}
 fieldset{
     border: 1px solid gray;
     margin: 15px;
@@ -114,6 +117,11 @@ input[type=submit]:hover {
 .meals img{
     max-width: 200px;
     max-height: 200px;
+}
+
+.meals {
+    
+ 
 }
 table {
 

@@ -14,8 +14,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src='//ajax.googleapis.com/ajax/libs/jquery/1/jquery.js'></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
         <script src="myscript.js"></script>
-
         <script>
             $(document).ready(function () {
                 $("#content").load("menu.php");
@@ -45,7 +45,7 @@
                 });
             });
 
-               
+
 
             $(document).ready(function () {
                 $("#formsignin").submit(function () {
@@ -54,22 +54,19 @@
             });
             $(document).ready(function () {
                 $("#formsignin").submit(function () {
-                    
+
                 });
             });
         </script>
-
-
-
     </head>
     <body >
-        <header> <h1> PHP Resturant</h1> </header>
+        <header> <h1> PHP Restaurant</h1> </header>
 
         <div class="navbar">
             <a id="amenu" class="active">Menu</a>
             <a id="ameals" class="active">Meals</a>
             <a id="aproducts">Products</a>
-            
+
             <a id="asignin" href="signin.php" style="float: right;">Sign in</a>
             <a id="asignup" href="signup.php" class="material-icons" style="float: right; font-size: 18px;" >&#xe7fe;</a>
             <div id="auserlist" class="dropdown" style="float: right; display: none">

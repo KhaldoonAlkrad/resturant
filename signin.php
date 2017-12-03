@@ -43,8 +43,6 @@
                 });
             });
 
-
-
             $(document).ready(function () {
                 $("#formsignin").submit(function () {
                     $("#content").load("menu.php");
@@ -61,11 +59,11 @@
         <header> <h1> PHP Resturant</h1> </header>
 
         <div class="navbar">
-            <a id="amenu" class="active">Menu</a>
-            <a id="ameals" class="active">Meals</a>
+            <a id="amenu" href="index.php" class="active">Menu</a>
+            <a id="ameals"  class="active">Meals</a>
             <a id="aproducts">Products</a>
             <a id="asignin" href="signin.php" style="float: right;">Sign in</a>
-            <a id="asignup"  class="material-icons" style="float: right; font-size: 18px;" >&#xe7fe;</a>
+            <a id="asignup" href="signup.php"  class="material-icons" style="float: right; font-size: 18px;" >&#xe7fe;</a>
             <div id="auserlist" class="dropdown" style="float: right; display: none">
                 <button class="dropbtn fa">&#xf007; 
                     <i class="fa fa-caret-down"></i>
@@ -78,6 +76,8 @@
             </div> 
             <a id="amycart"  class="fa" style="float: right;">&#xf07a;</a>
         </div>
+        
+        
         <form id=formsignin method = POST  autocomplete = on >
             <fieldset>
                 <legend>Sign in</legend>
@@ -87,14 +87,10 @@
                 $account = new account("", "", "", 0, "", "", "");
                 $msg = $account->checksignin();
                 ?>
-                <span class=error><?php echo $msg; ?></span>
+                <span class=error><?php if (isset($msg)){echo $msg;} ?></span>
             </fieldset><input type=submit name=signin value=Sign in ></form>
 
-      
-
-        <footer><h3> All Rights Reserved To Khaldoon Al Krad &reg;
-                <?php echo date('Y')
-                ?> </h3> </footer>
+        <footer><h3> All Rights Reserved To Khaldoon Al Krad &reg;<?php echo date('Y')?> </h3> </footer>
 
     </body>
 </html>

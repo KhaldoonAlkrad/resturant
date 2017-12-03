@@ -5,9 +5,17 @@
         <group>
             <file>file:/C:/xampp/htdocs/resturant/mycart.php</file>
             <file>file:/C:/xampp/htdocs/resturant/mystyle.css</file>
+            <file>file:/C:/xampp/htdocs/resturant/signin.php</file>
+            <file>file:/C:/xampp/htdocs/resturant/signup.php</file>
+            <file>file:/C:/xampp/htdocs/resturant/newindex.php</file>
             <file>file:/C:/xampp/htdocs/resturant/connectdb.php</file>
+            <file>file:/C:/xampp/htdocs/resturant/myprofile.php</file>
+            <file>file:/C:/xampp/htdocs/resturant/signout.php</file>
+            <file>file:/C:/xampp/htdocs/resturant/myorders.php</file>
+            <file>file:/C:/xampp/htdocs/resturant/myscript.js</file>
             <file>file:/C:/xampp/htdocs/resturant/index.php</file>
             <file>file:/C:/xampp/htdocs/resturant/menu.php</file>
+            <file>file:/C:/xampp/htdocs/resturant/products.php</file>
             <file>file:/C:/xampp/htdocs/resturant/classes.php</file>
             <file>file:/C:/xampp/htdocs/resturant/meals.php</file>
         </group>

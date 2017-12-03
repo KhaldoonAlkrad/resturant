@@ -1,4 +1,7 @@
-<?php require 'connectdb.php'; ?>
+<?php
+
+require 'connectdb.php';
+?>
 
 <?php
 
@@ -307,20 +310,26 @@ class meal {
             $sql = "SELECT * FROM `meal` WHERE categoryid=$categoryid";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
-                echo "<table>";
+
+                $mealitems = "<table>";
                 while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td class='meals' rowspan=2> " . "<img src=images/" . $row['imagename'] . "></td>";
-                    echo "<td class='meals mealname'colspan=4>" . $row['name'] . "</td>";
-                    echo "</tr>";
-                    echo "<tr>";
-                    echo "<td class='meals'> " . $row['description'] . "</td>";
-                    echo "<td class='meals'> &euro;" . $row['price'] . "</td>";
-                    echo "<td><input value=1 type=number name=quantity min=0 max=100></td>";
-                    echo "<td><button class=addbutton fa fa-cart-plus onclick=additemtocart()>+</button></td>";
-                    echo "<tr>";
+                    $mealid = "m" . $row['id'];
+                    $mealitems .= <<<EOT
+                    <tr>
+                    <td class="meals" rowspan=2> <img src=images/{$row['imagename']}></td>
+                    <td class='meals mealname'colspan=3>{$row['name']}</td>
+                    </tr>
+                    <tr>
+                    <td class='meals'> {$row['description']}</td>
+                    <td class='meals'> &euro;{$row['price']}</td>
+                    <td>
+                    <input  type=number name=quantity value=1 min=0 max=100>
+                    <button type=submit class=addbutton fa fa-cart-plus >+</button>
+                    </td>
+                    <tr>
+EOT;
                 }
-                echo "</table>";
+                echo $mealitems .= "</table>";
             }
             $con->close();
         }
@@ -481,20 +490,24 @@ class product {
             $sql = "SELECT * FROM `product` WHERE categoryid=$categoryid";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
-                echo "<table>";
+                $productitems = "<table>";
                 while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td class='meals' rowspan=2> " . "<img src=images/" . $row['imagename'] . "></td>";
-                    echo "<td class='meals mealname'colspan=4>" . $row['name'] . "</td>";
-                    echo "</tr>";
-                    echo "<tr>";
-                    echo "<td class='meals'> " . $row['description'] . "</td>";
-                    echo "<td class='meals'> &euro;" . $row['price'] . "</td>";
-                    echo "<td><input value=1 type=number name=quantity min=0 max=100></td>";
-                    echo "<td><button class=addbutton fa fa-cart-plus onclick=additemtocart()>+</button></td>";
-                    echo "<tr>";
+                    $productitems .= <<<EOT
+                    <tr>
+                    <td class='meals' rowspan=2> <img src=images/{$row['imagename']}> </td>
+                    <td class='meals mealname'colspan=4>{$row['name']}</td>
+                    </tr>
+                    <tr>
+                    <td class='meals'> {$row['description']}</td>
+                    <td class='meals'> &euro;{$row['price']}</td>
+                    <td>
+                    <input value=1 type=number name=quantity min=0 max=100>
+                    <button class=addbutton fa fa-cart-plus onclick=>+</button>
+                    </td>
+                    <tr>
+EOT;
                 }
-                echo "</table>";
+                echo $productitems .= "</table>";
             }
             $con->close();
         }

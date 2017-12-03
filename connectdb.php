@@ -4,9 +4,9 @@
 // Connect with database ///////////////////////////////////////////////////////////////////////////////
 function connectionDB() {
     $hostname = 'localhost';
-    $databasenaam = 'resturant';
-    $username = 'root';
-    $password = '';
+    $databasenaam = 'restaurant';
+    $username = 'phpzwollegen1';
+    $password = 'itphtoren';
     $conn = new mysqli($hostname, $username, $password, $databasenaam);
     return $conn;
 }
